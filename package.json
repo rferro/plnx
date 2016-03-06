@@ -1,0 +1,43 @@
+{
+  "name": "plnx",
+  "version": "0.0.1",
+  "description": "Unofficial Poloniex API client, with public/private methods and push.",
+  "keywords": [
+    "poloniex",
+    "bitcoin",
+    "ethereum",
+    "btc",
+    "eth",
+    "api",
+    "btc_eth"
+  ],
+  "main": "lib",
+  "dependencies": {
+    "autobahn": "^0.9.9",
+    "debug": "^2.2.0",
+    "lodash": "^4.6.1",
+    "nonce": "^1.0.3",
+    "request": "^2.69.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.6.4",
+    "babel-preset-es2015": "^6.6.0"
+  },
+  "scripts": {
+    "build": "babel src -d lib"
+  },
+  "author": "Ricardo Ferro <ricardo.ferro@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rferro/plnx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rferro/plnx/issues"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  }
+}
