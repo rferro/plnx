@@ -1,4 +1,5 @@
 
+import pkg          from "../package";
 import crypto       from "crypto";
 import querystring  from "querystring";
 
@@ -9,7 +10,7 @@ import autobahn     from "autobahn";
 
 import config       from "./config";
 
-let dbg = debug("plnx");
+let dbg = debug(pkg.name);
 
 for (let command in config.commands) {
   let cfg = config.commands[command];
@@ -47,27 +48,30 @@ for (let command in config.commands) {
     if (missing.length)
       return cb(`${command}: ${missing} required`);
 
-    let ropt = { json: true };
+    let ropt = {
+      json: true,
+      headers: {
+        "User-Agent": `${pkg.name} ${pkg.version}`
+      }
+    };
 
-    opt["command"] = command;
-    opt["nonce"]   = nonce()();
+    opt.command = command;
+    opt.nonce   = nonce()();
 
     if (is_private) {
-      ropt["method"]   = "POST";
-      ropt["url"]      = config.url.private;
-      ropt["form"]     = opt;
-      ropt["headers"]  = {
-        Key:  key,
-        Sign: crypto
-          .createHmac('sha512', new Buffer(secret))
-          .update(querystring.stringify(opt))
-          .digest('hex')
-      };
+      ropt.method       = "POST";
+      ropt.url          = config.url.private;
+      ropt.form         = opt;
+      ropt.headers.Key  = key;
+      ropt.headers.Sign = crypto
+        .createHmac('sha512', new Buffer(secret))
+        .update(querystring.stringify(opt))
+        .digest('hex');
     }
     else {
-      ropt["method"] = "GET";
-      ropt["url"]    = config.url.public;
-      ropt["qs"]     = opt;
+      ropt.method = "GET";
+      ropt.url    = config.url.public;
+      ropt.qs     = opt;
     }
 
     request(ropt, (err, res, data) => {
@@ -80,14 +84,12 @@ for (let command in config.commands) {
       cb(null, data);
     });
 
-    dbg({ key, secret, opt, is_private });
+    dbg({ key, secret, opt, is_private, ropt });
   };
 }
 
 // fix poloniex api docs
 exports.return24Volume = exports.return24hVolume;
-
-let ab;
 
 exports.push = (onopen) => {
   let conn = new autobahn.Connection({ url: config.url.push, realm: "realm1" });
