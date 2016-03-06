@@ -5,6 +5,7 @@ import querystring  from "querystring";
 import debug        from "debug";
 import request      from "request";
 import nonce        from "nonce";
+import autobahn     from "autobahn";
 
 import config       from "./config";
 
@@ -85,3 +86,11 @@ for (let command in config.commands) {
 
 // fix poloniex api docs
 exports.return24Volume = exports.return24hVolume;
+
+let ab;
+
+exports.push = (onopen) => {
+  let conn = new autobahn.Connection({ url: config.url.push, realm: "realm1" });
+  conn.onopen = onopen;
+  conn.open();
+};
