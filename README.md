@@ -7,7 +7,7 @@ Unofficial Poloniex API client, with public/private methods and push.
 
 ## Install
 
-```
+```sh
 npm install --save plnx
 ```
 
@@ -15,7 +15,7 @@ npm install --save plnx
 
 ### Private/Public Methods
 
-```
+```javascript
 plnx.METHOD([options], callback);
 ```
 
@@ -26,7 +26,7 @@ plnx.METHOD([options], callback);
 
 #### Example
 
-```
+```javascript
 // public without options
 plnx.returnTicker(function(err, data) {
   console.log(err, data);
@@ -53,7 +53,7 @@ plnx.returnTradeHistory({ key: "key", secret: "secret", currencyPair: "BTC_ETH" 
 
 [https://github.com/crossbario/autobahn-js](https://github.com/crossbario/autobahn-js)
 
-```
+```javascript
 plnx.push(function(session) {
   session.subscribe("channel", function(args, kwargs){
     console.log(args);
