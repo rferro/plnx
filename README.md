@@ -61,7 +61,9 @@ plnx.push(function(session) {
 });
 ```
 
-## Methods and options
+## Public and private methods and options
+
+> ? = optional
 
 ### Public
 
