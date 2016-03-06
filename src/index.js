@@ -9,12 +9,11 @@ import nonce        from "nonce";
 import config       from "./config";
 
 let dbg = debug("plnx");
-let exp = {};
 
 for (let command in config.commands) {
   let cfg = config.commands[command];
 
-  exp[command] = function(opt, cb) {
+  exports[command] = function(opt, cb) {
     let ks         = typeof opt.key === "string" && typeof opt.secret === "string";
     let is_private = cfg.type === "private" || (cfg.type === "both" && ks);
 
@@ -27,7 +26,7 @@ for (let command in config.commands) {
       throw new Error(`${command}: callback is not a function`);
 
     if (is_private && !ks)
-      return cb(`${command}: opt.key and opt.secret are necessary`);
+      return cb(`${command}: opt.key and opt.secret are required`);
 
     let key    = opt.key;
     let secret = opt.secret;
@@ -37,16 +36,12 @@ for (let command in config.commands) {
 
     let missing = [];
 
-    if (cfg.type === "both") {
+    if (cfg.type === "both")
       cfg.params = cfg.params[is_private ? "private" : "public"];
-    }
 
-    for (let param of cfg.params) {
-      let required = param.slice(-1) !== "?";
-
-      if (required && typeof opt[param] === "undefined")
+    for (let param of cfg.params)
+      if (param.slice(-1) !== "?" && typeof opt[param] === "undefined")
         missing.push(param);
-    }
 
     if (missing.length)
       return cb(`${command}: ${missing} required`);
@@ -84,16 +79,9 @@ for (let command in config.commands) {
       cb(null, data);
     });
 
-    dbg({
-      key,
-      secret,
-      opt,
-      is_private
-    });
+    dbg({ key, secret, opt, is_private });
   };
 }
 
 // fix poloniex api docs
-exp.return24Volume = exp.return24hVolume;
-
-export default exp;
+exports.return24Volume = exports.return24hVolume;
