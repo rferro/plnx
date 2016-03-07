@@ -1,17 +1,12 @@
 
 export default {
-  url: {
+  urls: {
     public:   "https://poloniex.com/public",
     private:  "https://poloniex.com/tradingApi",
     push:     "wss://api.poloniex.com"
   },
   commands: {
-    // public
     returnTicker: {
-      type:   "public",
-      params: [],
-    },
-    return24Volume: {
       type:   "public",
       params: [],
     },
@@ -35,7 +30,6 @@ export default {
       type:   "public",
       params: ["currency"],
     },
-    // private
     returnBalances: {
       type:   "private",
       params: [],
@@ -132,7 +126,6 @@ export default {
       type:   "private",
       params: ["orderNumber"]
     },
-    // public and private
     returnTradeHistory: {
       type:   "both",
       params: {

@@ -28,7 +28,7 @@ for (let command in config.commands) {
       throw new Error(`${command}: callback is not a function`);
 
     if (is_private && !ks)
-      return cb(`${command}: opt.key and opt.secret are required`);
+      return cb(`${command}: options.key and options.secret are required`);
 
     let key    = opt.key;
     let secret = opt.secret;
@@ -46,7 +46,7 @@ for (let command in config.commands) {
         missing.push(param);
 
     if (missing.length)
-      return cb(`${command}: ${missing} required`);
+      return cb(`${command}: options ${missing} are required`);
 
     let ropt = {
       json: true,
@@ -60,19 +60,21 @@ for (let command in config.commands) {
 
     if (is_private) {
       ropt.method       = "POST";
-      ropt.url          = config.url.private;
+      ropt.url          = config.urls.private;
       ropt.form         = opt;
       ropt.headers.Key  = key;
       ropt.headers.Sign = crypto
-        .createHmac('sha512', new Buffer(secret))
+        .createHmac("sha512", new Buffer(secret))
         .update(querystring.stringify(opt))
-        .digest('hex');
+        .digest("hex");
     }
     else {
       ropt.method = "GET";
-      ropt.url    = config.url.public;
+      ropt.url    = config.urls.public;
       ropt.qs     = opt;
     }
+
+    dbg({ key, secret, opt, is_private, ropt });
 
     request(ropt, (err, res, data) => {
       if (!err && data && data.error)
@@ -83,8 +85,6 @@ for (let command in config.commands) {
 
       cb(null, data);
     });
-
-    dbg({ key, secret, opt, is_private, ropt });
   };
 }
 
@@ -92,7 +92,7 @@ for (let command in config.commands) {
 exports.return24Volume = exports.return24hVolume;
 
 exports.push = (onopen) => {
-  let conn = new autobahn.Connection({ url: config.url.push, realm: "realm1" });
+  let conn = new autobahn.Connection({ url: config.urls.push, realm: "realm1" });
   conn.onopen = onopen;
   conn.open();
 };
