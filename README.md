@@ -55,8 +55,8 @@ plnx.returnTradeHistory({ key: "key", secret: "secret", currencyPair: "BTC_ETH" 
 
 ```javascript
 plnx.push(function(session) {
-  session.subscribe("channel", function(args, kwargs){
-    console.log(args);
+  session.subscribe("channel", function(data){
+    console.log(data);
   });
 });
 ```
@@ -76,6 +76,8 @@ plnx.push(function(session) {
 * returnLoanOrders: `{ currency }`
 
 ### Private
+
+> `key` and `secret` are required in all
 
 * returnBalances: `{}`
 * returnCompleteBalances: `{}`
