@@ -8,8 +8,14 @@
     "ethereum",
     "btc",
     "eth",
+    "ether",
+    "maid",
     "api",
-    "btc_eth"
+    "push",
+    "trade",
+    "trading",
+    "trader",
+    "exchange"
   ],
   "main": "lib",
   "dependencies": {
