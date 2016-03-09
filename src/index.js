@@ -77,13 +77,14 @@ for (let command in config.commands) {
     dbg({ key, secret, opt, is_private, ropt });
 
     request(ropt, (err, res, data) => {
-      if (!err && data && data.error)
-        err = data.error;
-
       if (err)
-        return cb(err);
-
-      cb(null, data);
+        cb(err);
+      else if (res.statusCode !== 200)
+        cb(`statusCode ${res.statusCode}`);
+      else if (data && data.error)
+        cb(data.error);
+      else
+        cb(null, data);
     });
   };
 }
