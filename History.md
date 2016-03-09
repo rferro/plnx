@@ -1,0 +1,35 @@
+
+0.0.5 / 2016-03-09
+==================
+
+  * Add statusCode check in request callback (close #1)
+
+v0.0.4 / 2016-03-07
+===================
+
+  * Code syntax improvements
+  * README improvements
+  * Move licence to README and delete LICENCE file
+  * Delete .npmignore
+  * Add new tags in package.json
+
+v0.0.3 / 2016-03-06
+===================
+
+  * Add User-Agent in request and code improvements
+
+v0.0.2 / 2016-03-06
+===================
+
+  * Update README.md
+
+v0.0.1 / 2016-03-06
+===================
+
+  * Update README.md
+  * Add LICENCE
+  * Add README
+  * Add push method using autobahn
+  * Fix exports and code improvements
+  * Add .npmignore
+  * First version
