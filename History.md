@@ -1,4 +1,10 @@
 
+0.0.6 / 2016-03-12
+==================
+
+  * Module nonce removed and replaced by an internal function. Fix the bug that repeat the incremental number in nonce module. (close #2)
+  * Update gitignore
+
 0.0.5 / 2016-03-09
 ==================
 
