@@ -5,10 +5,10 @@ import querystring  from "querystring";
 
 import debug        from "debug";
 import request      from "request";
-import nonce        from "nonce";
 import autobahn     from "autobahn";
 
 import config       from "./config";
+import nonce        from "./nonce";
 
 let dbg = debug(pkg.name);
 
@@ -56,9 +56,9 @@ for (let command in config.commands) {
     };
 
     opt.command = command;
-    opt.nonce   = nonce()();
 
     if (is_private) {
+      opt.nonce         = nonce();
       ropt.method       = "POST";
       ropt.url          = config.urls.private;
       ropt.form         = opt;
