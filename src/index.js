@@ -38,10 +38,12 @@ for (let command in config.commands) {
 
     let missing = [];
 
-    if (cfg.type === "both")
-      cfg.params = cfg.params[is_private ? "private" : "public"];
+    let params = cfg.params;
 
-    for (let param of cfg.params)
+    if (cfg.type === "both")
+      params = params[is_private ? "private" : "public"];
+
+    for (let param of params)
       if (param.slice(-1) !== "?" && typeof opt[param] === "undefined")
         missing.push(param);
 
