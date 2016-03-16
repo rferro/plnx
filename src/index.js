@@ -6,6 +6,7 @@ import querystring  from "querystring";
 import debug        from "debug";
 import request      from "request";
 import autobahn     from "autobahn";
+import _            from "lodash";
 
 import config       from "./config";
 import nonce        from "./nonce";
@@ -15,7 +16,8 @@ let dbg = debug(pkg.name);
 for (let command in config.commands) {
   let cfg = config.commands[command];
 
-  exports[command] = function(opt, cb) {
+  exports[command] = function(options, cb) {
+    let opt        = _.cloneDeep(options);
     let ks         = typeof opt.key === "string" && typeof opt.secret === "string";
     let is_private = cfg.type === "private" || (cfg.type === "both" && ks);
 
