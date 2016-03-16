@@ -39,11 +39,11 @@ for (let command in config.commands) {
     delete opt.secret;
 
     let missing = [];
+    let params  = cfg.type === "both" ?
+      cfg.params[is_private ? "private" : "public"]:
+      cfg.params;
 
-    if (cfg.type === "both")
-      cfg.params = cfg.params[is_private ? "private" : "public"];
-
-    for (let param of cfg.params)
+    for (let param of params)
       if (param.slice(-1) !== "?" && typeof opt[param] === "undefined")
         missing.push(param);
 
