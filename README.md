@@ -3,7 +3,7 @@
 
 Unofficial Poloniex API client, with public/private methods and push.
 
-[![NPM](https://nodei.co/npm/plnx.png)](https://nodei.co/npm/plnx/)
+[![NPM](https://nodei.co/npm/plnx.png?downloads=true&downloadRank=true)](https://nodei.co/npm/plnx)
 
 ## Install
 
