@@ -1,15 +1,17 @@
 
-let counter = 0;
-let last    = null;
+let counter = 0
+let last = null
 
 export default () => {
-  let now = parseInt(Date.now()) * 1000;
+  let now = parseInt(Date.now()) * 1000
 
-  if (now !== last)
-    counter = 0;
+  if (now !== last) {
+    counter = 0
+  }
 
-  if (counter < 999)
-    counter++;
+  if (counter < 999) {
+    counter++
+  }
 
-  return (last = now) + counter;
-};
+  return (last = now) + counter
+}

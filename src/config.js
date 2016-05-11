@@ -3,135 +3,135 @@ export default {
   urls: {
     public:   "https://poloniex.com/public",
     private:  "https://poloniex.com/tradingApi",
-    push:     "wss://api.poloniex.com"
+    push:     "wss://api.poloniex.com",
   },
   commands: {
     returnTicker: {
-      type:   "public",
+      type: "public",
       params: [],
     },
     return24hVolume: {
-      type:   "public",
+      type: "public",
       params: [],
     },
     returnOrderBook: {
-      type:   "public",
+      type: "public",
       params: ["currencyPair", "depth?"],
     },
     returnChartData: {
-      type:   "public",
+      type: "public",
       params: ["currencyPair", "start", "end", "period"],
     },
     returnCurrencies: {
-      type:   "public",
+      type: "public",
       params: [],
     },
     returnLoanOrders: {
-      type:   "public",
+      type: "public",
       params: ["currency"],
     },
     returnBalances: {
-      type:   "private",
+      type: "private",
       params: [],
     },
     returnCompleteBalances: {
-      type:   "private",
+      type: "private",
       params: [],
     },
     returnDepositAddresses: {
-      type:   "private",
+      type: "private",
       params: [],
     },
     generateNewAddress: {
-      type:   "private",
+      type: "private",
       params: ["currency"],
     },
     returnDepositsWithdrawals: {
-      type:   "private",
+      type: "private",
       params: ["start", "end"],
     },
     returnOpenOrders: {
-      type:   "private",
+      type: "private",
       params: ["currencyPair"],
     },
     buy: {
-      type:   "private",
+      type: "private",
       params: ["currencyPair", "rate", "amount", "fillOrKill?", "immediateOrCancel?"],
     },
     sell: {
-      type:   "private",
+      type: "private",
       params: ["currencyPair", "rate", "amount", "fillOrKill?", "immediateOrCancel?"],
     },
     cancelOrder: {
-      type:   "private",
+      type: "private",
       params: ["orderNumber"],
     },
     moveOrder: {
-      type:   "private",
+      type: "private",
       params: ["orderNumber", "rate"],
     },
     withdraw: {
-      type:   "private",
+      type: "private",
       params: ["currency", "amount", "address", "paymentId?"],
     },
     returnAvailableAccountBalances: {
-      type:   "private",
+      type: "private",
       params: ["account?"],
     },
     returnTradableBalances: {
-      type:   "private",
+      type: "private",
       params: [],
     },
     transferBalance: {
-      type:   "private",
+      type: "private",
       params: ["currency", "amount", "fromAccount", "toAccount"],
     },
     returnMarginAccountSummary: {
-      type:   "private",
+      type: "private",
       params: [],
     },
     marginBuy: {
-      type:   "private",
+      type: "private",
       params: ["currencyPair", "rate", "amount", "lendingRate?"],
     },
     marginSell: {
-      type:   "private",
+      type: "private",
       params: ["currencyPair", "rate", "amount", "lendingRate?"],
     },
     getMarginPosition: {
-      type:   "private",
+      type: "private",
       params: ["currencyPair", "type?", "liquidationPrice?"],
     },
     closeMarginPosition: {
-      type:   "private",
+      type: "private",
       params: ["currencyPair"],
     },
     createLoanOffer: {
-      type:   "private",
+      type: "private",
       params: ["currency", "amount", "duration", "autoRenew", "lendingRate"],
     },
     cancelLoanOffer: {
-      type:   "private",
+      type: "private",
       params: ["orderNumber"],
     },
     returnOpenLoanOffers: {
-      type:   "private",
+      type: "private",
       params: [],
     },
     returnActiveLoans: {
-      type:   "private",
+      type: "private",
       params: [],
     },
     toggleAutoRenew: {
-      type:   "private",
-      params: ["orderNumber"]
+      type: "private",
+      params: ["orderNumber"],
     },
     returnTradeHistory: {
-      type:   "both",
+      type: "both",
       params: {
         private: ["currencyPair", "start?", "end?"],
-        public:  ["currencyPair", "start?", "end?"]
+        public:  ["currencyPair", "start?", "end?"],
       }
     },
   }
-};
+}
