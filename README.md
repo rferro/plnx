@@ -88,6 +88,7 @@ plnx.push(function(session) {
 * returnDepositsWithdrawals: `{ start, end }`
 * returnOpenOrders: `{ currencyPair }`
 * returnTradeHistory: `{ currencyPair, start?, end? }`
+* returnOrderTrades: `{ orderNumber }`
 * buy: `{ currencyPair, rate, amount, fillOrKill?, immediateOrCancel? }`
 * sell: `{ currencyPair, rate, amount, fillOrKill?, immediateOrCancel? }`
 * cancelOrder: `{ orderNumber }`
