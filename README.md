@@ -1,4 +1,6 @@
 
+<img align="right" src="https://cdn.rawgit.com/feross/standard/master/badge.svg">
+
 # plnx
 
 Unofficial Poloniex API client, with public/private methods and push.
