@@ -54,6 +54,10 @@ export default {
       type: "private",
       params: ["currencyPair"],
     },
+    returnOrderTrades: {
+      type: "private",
+      params: ["orderNumber"],
+    },
     buy: {
       type: "private",
       params: ["currencyPair", "rate", "amount", "fillOrKill?", "immediateOrCancel?"],
