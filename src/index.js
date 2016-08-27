@@ -17,14 +17,14 @@ for (let command in config.commands) {
   let cfg = config.commands[command]
 
   exports[command] = function(options, cb) {
+    if (arguments.length === 1) {
+      cb = options
+      options = {}
+    }
+
     let opt = _.cloneDeep(options)
     let ks = typeof opt.key === 'string' && typeof opt.secret === 'string'
     let is_private = cfg.type === 'private' || (cfg.type === 'both' && ks)
-
-    if (arguments.length === 1) {
-      cb = opt
-      opt = {}
-    }
 
     if (typeof cb !== 'function') {
       throw new Error(`${command}: callback is not a function`)
