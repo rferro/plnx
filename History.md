@@ -1,4 +1,9 @@
 
+0.0.10 / 2016-08-27
+==================
+
+  * Fix "missing callback" error on returnTicker (close #9, close #6)
+
 0.0.9 / 2016-07-12
 ==================
 
