@@ -82,7 +82,7 @@ plnx.push(function(session) {
 > `key` and `secret` are required in all
 
 * returnBalances: `{}`
-* returnCompleteBalances: `{}`
+* returnCompleteBalances: `{account?}`
 * returnDepositAddresses: `{}`
 * generateNewAddress: `{ currency }`
 * returnDepositsWithdrawals: `{ start, end }`
