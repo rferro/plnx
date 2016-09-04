@@ -36,7 +36,7 @@ export default {
     },
     returnCompleteBalances: {
       type: "private",
-      params: [],
+      params: ["account?"],
     },
     returnDepositAddresses: {
       type: "private",
