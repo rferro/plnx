@@ -20,7 +20,7 @@
   ],
   "main": "lib",
   "dependencies": {
-    "autobahn": "^0.9.9",
+    "autobahn": "^0.10.1",
     "debug": "^2.2.0",
     "lodash": "^4.6.1",
     "request": "^2.69.0"
