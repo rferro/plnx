@@ -68,7 +68,7 @@ plnx.returnTicker()
   .then((data) => {
     console.log(data)
   })
-  .catch(() => {
+  .catch((err) => {
     console.log(err)
   })
 
@@ -76,7 +76,7 @@ plnx.returnCompleteBalances({ key: 'key', secret: 'secret' })
   .then((data) => {
     console.log(data)
   })
-  .catch(() => {
+  .catch((err) => {
     console.log(err)
   })
 ```
