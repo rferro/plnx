@@ -18,8 +18,10 @@ for (let command in config.commands) {
   let cfg = config.commands[command]
 
   exports[command] = function (options, cb) {
-    if (arguments.length === 1) {
+    if (typeof options === 'function') {
       cb = options
+      options = {}
+    } else if (!options) {
       options = {}
     }
 
@@ -28,7 +30,15 @@ for (let command in config.commands) {
     let isPrivate = cfg.type === 'private' || (cfg.type === 'both' && ks)
 
     if (typeof cb !== 'function') {
-      throw new Error(`${command}: callback is not a function`)
+      return new Promise((resolve, reject) => {
+        exports[command](options, (err, data) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(data)
+          }
+        })
+      })
     }
 
     if (isPrivate && !ks) {
