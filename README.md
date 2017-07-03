@@ -30,6 +30,8 @@ plnx.METHOD([options], [callback])
 * `options`: object (optional if empty)
   - With private methods, options.key and options.secret are required.
 * `callback`: function(err, data)
+  - `err`: Error instance if exists, or `null`.
+  - `data`: API response object
 
 > If no callback is provided, a Promise object is returned.
 
