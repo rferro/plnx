@@ -1,4 +1,15 @@
 
+0.1.0 / 2017-07-03
+==================
+
+  * If no callback is provided, a Promise object is returned. (close #11)
+  * Update old dependencies and create package-lock.
+  * Add standard and pre-commit configs and scripts.
+  * Fix WS 3.0 bug in autobahn
+  * Add optional parameter to returnCompleteBalances
+  * Merge pull request #13 from CjS77/data_on_err
+  * Always include data in error callback
+
 0.0.10 / 2016-08-27
 ==================
 
