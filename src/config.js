@@ -1,141 +1,141 @@
 
 export default {
   urls: {
-    public:   "https://poloniex.com/public",
-    private:  "https://poloniex.com/tradingApi",
-    push:     "wss://api.poloniex.com",
+    public: 'https://poloniex.com/public',
+    private: 'https://poloniex.com/tradingApi',
+    push: 'wss://api.poloniex.com'
   },
   commands: {
     returnTicker: {
-      type: "public",
-      params: [],
+      type: 'public',
+      params: []
     },
     return24hVolume: {
-      type: "public",
-      params: [],
+      type: 'public',
+      params: []
     },
     returnOrderBook: {
-      type: "public",
-      params: ["currencyPair", "depth?"],
+      type: 'public',
+      params: ['currencyPair', 'depth?']
     },
     returnChartData: {
-      type: "public",
-      params: ["currencyPair", "start", "end", "period"],
+      type: 'public',
+      params: ['currencyPair', 'start', 'end', 'period']
     },
     returnCurrencies: {
-      type: "public",
-      params: [],
+      type: 'public',
+      params: []
     },
     returnLoanOrders: {
-      type: "public",
-      params: ["currency"],
+      type: 'public',
+      params: ['currency']
     },
     returnBalances: {
-      type: "private",
-      params: [],
+      type: 'private',
+      params: []
     },
     returnCompleteBalances: {
-      type: "private",
-      params: ["account?"],
+      type: 'private',
+      params: ['account?']
     },
     returnDepositAddresses: {
-      type: "private",
-      params: [],
+      type: 'private',
+      params: []
     },
     generateNewAddress: {
-      type: "private",
-      params: ["currency"],
+      type: 'private',
+      params: ['currency']
     },
     returnDepositsWithdrawals: {
-      type: "private",
-      params: ["start", "end"],
+      type: 'private',
+      params: ['start', 'end']
     },
     returnOpenOrders: {
-      type: "private",
-      params: ["currencyPair"],
+      type: 'private',
+      params: ['currencyPair']
     },
     returnOrderTrades: {
-      type: "private",
-      params: ["orderNumber"],
+      type: 'private',
+      params: ['orderNumber']
     },
     buy: {
-      type: "private",
-      params: ["currencyPair", "rate", "amount", "fillOrKill?", "immediateOrCancel?"],
+      type: 'private',
+      params: ['currencyPair', 'rate', 'amount', 'fillOrKill?', 'immediateOrCancel?']
     },
     sell: {
-      type: "private",
-      params: ["currencyPair", "rate", "amount", "fillOrKill?", "immediateOrCancel?"],
+      type: 'private',
+      params: ['currencyPair', 'rate', 'amount', 'fillOrKill?', 'immediateOrCancel?']
     },
     cancelOrder: {
-      type: "private",
-      params: ["orderNumber"],
+      type: 'private',
+      params: ['orderNumber']
     },
     moveOrder: {
-      type: "private",
-      params: ["orderNumber", "rate"],
+      type: 'private',
+      params: ['orderNumber', 'rate']
     },
     withdraw: {
-      type: "private",
-      params: ["currency", "amount", "address", "paymentId?"],
+      type: 'private',
+      params: ['currency', 'amount', 'address', 'paymentId?']
     },
     returnAvailableAccountBalances: {
-      type: "private",
-      params: ["account?"],
+      type: 'private',
+      params: ['account?']
     },
     returnTradableBalances: {
-      type: "private",
-      params: [],
+      type: 'private',
+      params: []
     },
     transferBalance: {
-      type: "private",
-      params: ["currency", "amount", "fromAccount", "toAccount"],
+      type: 'private',
+      params: ['currency', 'amount', 'fromAccount', 'toAccount']
     },
     returnMarginAccountSummary: {
-      type: "private",
-      params: [],
+      type: 'private',
+      params: []
     },
     marginBuy: {
-      type: "private",
-      params: ["currencyPair", "rate", "amount", "lendingRate?"],
+      type: 'private',
+      params: ['currencyPair', 'rate', 'amount', 'lendingRate?']
     },
     marginSell: {
-      type: "private",
-      params: ["currencyPair", "rate", "amount", "lendingRate?"],
+      type: 'private',
+      params: ['currencyPair', 'rate', 'amount', 'lendingRate?']
     },
     getMarginPosition: {
-      type: "private",
-      params: ["currencyPair", "type?", "liquidationPrice?"],
+      type: 'private',
+      params: ['currencyPair', 'type?', 'liquidationPrice?']
     },
     closeMarginPosition: {
-      type: "private",
-      params: ["currencyPair"],
+      type: 'private',
+      params: ['currencyPair']
     },
     createLoanOffer: {
-      type: "private",
-      params: ["currency", "amount", "duration", "autoRenew", "lendingRate"],
+      type: 'private',
+      params: ['currency', 'amount', 'duration', 'autoRenew', 'lendingRate']
     },
     cancelLoanOffer: {
-      type: "private",
-      params: ["orderNumber"],
+      type: 'private',
+      params: ['orderNumber']
     },
     returnOpenLoanOffers: {
-      type: "private",
-      params: [],
+      type: 'private',
+      params: []
     },
     returnActiveLoans: {
-      type: "private",
-      params: [],
+      type: 'private',
+      params: []
     },
     toggleAutoRenew: {
-      type: "private",
-      params: ["orderNumber"],
+      type: 'private',
+      params: ['orderNumber']
     },
     returnTradeHistory: {
-      type: "both",
+      type: 'both',
       params: {
-        private: ["currencyPair", "start?", "end?"],
-        public:  ["currencyPair", "start?", "end?"],
+        private: ['currencyPair', 'start?', 'end?'],
+        public: ['currencyPair', 'start?', 'end?']
       }
-    },
+    }
   }
 }

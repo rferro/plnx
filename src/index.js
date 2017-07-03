@@ -3,6 +3,7 @@ import pkg from '../package'
 import crypto from 'crypto'
 import querystring from 'querystring'
 
+import { Buffer } from 'safe-buffer'
 import debug from 'debug'
 import request from 'request'
 import autobahn from 'autobahn'
@@ -16,7 +17,7 @@ let dbg = debug(pkg.name)
 for (let command in config.commands) {
   let cfg = config.commands[command]
 
-  exports[command] = function(options, cb) {
+  exports[command] = function (options, cb) {
     if (arguments.length === 1) {
       cb = options
       options = {}
@@ -24,14 +25,14 @@ for (let command in config.commands) {
 
     let opt = _.cloneDeep(options)
     let ks = typeof opt.key === 'string' && typeof opt.secret === 'string'
-    let is_private = cfg.type === 'private' || (cfg.type === 'both' && ks)
+    let isPrivate = cfg.type === 'private' || (cfg.type === 'both' && ks)
 
     if (typeof cb !== 'function') {
       throw new Error(`${command}: callback is not a function`)
     }
 
-    if (is_private && !ks) {
-      return cb(`${command}: options.key and options.secret are required`)
+    if (isPrivate && !ks) {
+      return cb(new Error(`${command}: options.key and options.secret are required`))
     }
 
     let key = opt.key
@@ -42,7 +43,7 @@ for (let command in config.commands) {
 
     let missing = []
     let params = cfg.type === 'both'
-      ? cfg.params[is_private ? 'private' : 'public']
+      ? cfg.params[isPrivate ? 'private' : 'public']
       : cfg.params
 
     for (let param of params) {
@@ -52,7 +53,7 @@ for (let command in config.commands) {
     }
 
     if (missing.length) {
-      return cb(`${command}: options ${missing} are required`)
+      return cb(new Error(`${command}: options ${missing} are required`))
     }
 
     let ropt = {
@@ -64,14 +65,14 @@ for (let command in config.commands) {
 
     opt.command = command
 
-    if (is_private) {
+    if (isPrivate) {
       opt.nonce = nonce()
       ropt.method = 'POST'
       ropt.url = config.urls.private
       ropt.form = opt
       ropt.headers.Key = key
       ropt.headers.Sign = crypto
-        .createHmac('sha512', new Buffer(secret))
+        .createHmac('sha512', Buffer.from(secret))
         .update(querystring.stringify(opt))
         .digest('hex')
     } else {
@@ -80,13 +81,13 @@ for (let command in config.commands) {
       ropt.qs = opt
     }
 
-    dbg({ key, secret, opt, is_private, ropt })
+    dbg({ key, secret, opt, isPrivate, ropt })
 
     request(ropt, (err, res, data) => {
       if (err) {
         cb(err)
       } else if (res.statusCode !== 200) {
-        cb(`statusCode ${res.statusCode}`)
+        cb(new Error(`statusCode ${res.statusCode}`))
       } else if (data && data.error) {
         cb(data.error)
       } else {
