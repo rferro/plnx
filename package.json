@@ -34,7 +34,9 @@
     "standard": "^10.0.2"
   },
   "scripts": {
-    "build": "babel src -d lib"
+    "build": "babel src -d lib",
+    "standard": "standard | snazzy",
+    "standard:fix": "standard --fix | snazzy"
   },
   "author": "Ricardo Ferro <ricardo.ferro@gmail.com>",
   "license": "MIT",
@@ -48,6 +50,16 @@
   "babel": {
     "presets": [
       "es2015"
+    ]
+  },
+  "standard": {
+    "ignore": [
+      "lib"
+    ]
+  },
+  "pre-commit": {
+    "run": [
+      "standard"
     ]
   }
 }
