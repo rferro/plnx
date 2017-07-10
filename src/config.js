@@ -126,6 +126,10 @@ export default {
       type: 'private',
       params: []
     },
+    returnLendingHistory: {
+      type: 'private',
+      params: ['start?', 'end?', 'limit?']
+    },
     toggleAutoRenew: {
       type: 'private',
       params: ['orderNumber']
