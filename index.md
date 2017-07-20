@@ -15,40 +15,70 @@ npm install --save plnx
 
 ## Use
 
+```javascript
+const plnx = require('plnx')
+// or
+import plnx from 'plnx'
+```
+
 ### Private/Public Methods
 
 ```javascript
-plnx.METHOD([options], callback);
+plnx.METHOD([options], [callback])
 ```
 
 * `options`: object (optional if empty)
+  - With private methods, options.key and options.secret are required.
 * `callback`: function(err, data)
+  - `err`: Error instance if exists, or `null`.
+  - `data`: API response object
 
-> With private methods, options.key and options.secret are required.
+> If no callback is provided, a Promise object is returned.
 
 #### Example
 
 ```javascript
 // public without options
-plnx.returnTicker(function(err, data) {
-  console.log(err, data);
-});
+
+plnx.returnTicker((err, data) => {
+  console.log(err, data)
+})
 
 // public with options
-plnx.returnOrderBook({ currencyPair: "BTC_ETH" }, function(err, data) {
-  console.log(err, data);
-});
+
+plnx.returnOrderBook({ currencyPair: 'BTC_ETH' }, (err, data) => {
+  console.log(err, data)
+})
 
 // private without options
-plnx.returnCompleteBalances({ key: "key", secret: "secret" }, function(err, data) {
-  console.log(err, data);
-});
+
+plnx.returnCompleteBalances({ key: 'key', secret: 'secret' }, (err, data) => {
+  console.log(err, data)
+})
 
 // private with options
-plnx.returnTradeHistory({ key: "key", secret: "secret", currencyPair: "BTC_ETH" }, function(err, data) {
-  console.log(err, data);
-});
 
+plnx.returnTradeHistory({ key: 'key', secret: 'secret', currencyPair: 'BTC_ETH' }, (err, data) => {
+  console.log(err, data)
+})
+
+// with promises
+
+plnx.returnTicker()
+  .then((data) => {
+    console.log(data)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+
+plnx.returnCompleteBalances({ key: 'key', secret: 'secret' })
+  .then((data) => {
+    console.log(data)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 ```
 
 ### Push
@@ -56,11 +86,11 @@ plnx.returnTradeHistory({ key: "key", secret: "secret", currencyPair: "BTC_ETH" 
 [https://github.com/crossbario/autobahn-js](https://github.com/crossbario/autobahn-js)
 
 ```javascript
-plnx.push(function(session) {
-  session.subscribe("channel", function(data){
-    console.log(data);
-  });
-});
+plnx.push((session) => {
+  session.subscribe('channel', (data) => {
+    console.log(data)
+  })
+})
 ```
 
 ## Public and private methods and options
@@ -82,7 +112,7 @@ plnx.push(function(session) {
 > `key` and `secret` are required in all
 
 * returnBalances: `{}`
-* returnCompleteBalances: `{}`
+* returnCompleteBalances: `{account?}`
 * returnDepositAddresses: `{}`
 * generateNewAddress: `{ currency }`
 * returnDepositsWithdrawals: `{ start, end }`
