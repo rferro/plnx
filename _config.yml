@@ -1,0 +1,8 @@
+title: plnx
+description: Unofficial Poloniex API client, with public/private methods and push.
+google_analytics: UA-74764842-1
+show_downloads: true
+theme: jekyll-theme-modernist
+
+gems:
+  - jekyll-mentions
