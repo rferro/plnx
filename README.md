@@ -136,6 +136,7 @@ plnx.push((session) => {
 * cancelLoanOffer: `{ orderNumber }`
 * returnOpenLoanOffers: `{}`
 * returnActiveLoans: `{}`
+* returnLendingHistory: `{ start?, end?, limit? }`
 * toggleAutoRenew: `{ orderNumber }`
 
 ## License
