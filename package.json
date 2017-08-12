@@ -1,6 +1,6 @@
 {
   "name": "plnx",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Unofficial Poloniex API client, with public/private methods and push.",
   "keywords": [
     "poloniex",
