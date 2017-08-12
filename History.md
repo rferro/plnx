@@ -1,4 +1,9 @@
 
+0.1.2 / 2017-08-12
+==================
+
+  * Add missing API method - returnLendingHistory
+
 0.1.0 / 2017-07-03
 ==================
 
