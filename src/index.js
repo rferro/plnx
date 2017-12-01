@@ -97,11 +97,11 @@ for (let command in config.commands) {
       if (err) {
         cb(err)
       } else if (res.statusCode !== 200) {
-        cb(new Error(`statusCode ${res.statusCode}`))
+        cb(new Error(`statusCode ${res.statusCode}`), res, data)
       } else if (data && data.error) {
-        cb(data.error)
+        cb(res, res, data)
       } else {
-        cb(null, data)
+        cb(null, res, data)
       }
     })
   }
